@@ -17,19 +17,26 @@
       </div>
       <div class="company-data-item">
           <label for="">Notes</label>
-          <textarea placeholder="e.g. Good Tech Company"></textarea>
+          <textarea @click="openModal" placeholder="e.g. Good Tech Company"></textarea>
       </div>
+      <note-modal class="note-modal" v-if="showModal" @closeModal="showModal = $event"></note-modal>
   </div>
 </template>
 
 <script>
+import NoteModal from "./NoteModal.vue";
+
 export default {
+    components: {
+        NoteModal
+    },
     data() {
         return {
             errorName: null,
             companyName: null,
             companySpend: null,
-            companySpendAbility: null
+            companySpendAbility: null,
+            showModal: false
         }
     },
     methods: {
@@ -41,6 +48,9 @@ export default {
             if (!this.companyName) {
                 this.errorName = "Company Name must be present"
             } 
+        },
+        openModal() {
+            this.showModal = true
         }
     }
 }
@@ -54,7 +64,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
-    width: 100%;
+    width: 100%
 }
 .company-data h5{
     font-weight: 300;
@@ -101,5 +111,15 @@ export default {
 .error {
     color: red;
     text-transform: capitalize;
+}
+
+.note-modal {
+    display: flex;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5)
 }
 </style>
