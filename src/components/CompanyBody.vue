@@ -22,5 +22,6 @@ components: {
     width: 100%;
     padding: 20px 8%;
     display: flex;
+    overflow: auto;
 }
 </style>

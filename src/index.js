@@ -1,7 +1,7 @@
 import 'Styles/main.scss';
 import Vue from 'vue';
 import VueRouter from "vue-router";
-import store from "./store";
+import store from "./store/index.js";
 import App from './App.vue';
 import { routes } from "./routes";
 

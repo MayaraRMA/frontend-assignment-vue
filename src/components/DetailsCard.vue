@@ -21,6 +21,7 @@ props: {
     .card {
         border: 1px solid #D8DDE6;
         border-radius: 5px;
+        background-color: #ffffff;
     }
 
     .card-title {
