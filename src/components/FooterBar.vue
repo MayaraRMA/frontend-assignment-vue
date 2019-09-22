@@ -11,7 +11,7 @@ export default {
 <style scoped> 
 .footer-bar {
     background-color: #f3f3f3;
-    height: 140px;
+    height: 70px;
     width: 100%;
 }
 </style>

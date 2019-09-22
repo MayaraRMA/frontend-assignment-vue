@@ -2,28 +2,47 @@
   <div class="company-data">
       <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h5>
       <div class="company-data-item">
-          <label for="">Company Name</label>
-          <input type="text" placeholder="e.g. Your Company Name">
+          <label for="companyName">Company Name</label>
+          <input @blur="checkName" type="text" name="companyName" v-model="companyName" placeholder="e.g. Your Company Name">
+          <span class="error" v-if="errorName">{{ errorName }}</span>
       </div>
       
       <div class="company-data-item">
           <label for="">Company Spend</label>
-          <input type="text" placeholder="e.g. $150,000">
+          <input type="text" v-model="companySpend" placeholder="e.g. $150,000">
       </div>
       <div class="company-data-item">
           <label for="">Company Spend Ability</label>
-          <input type="text" placeholder="e.g. $150,000 - $330,000">
+          <input type="text" v-model="companySpendAbility" placeholder="e.g. $150,000 - $330,000">
       </div>
       <div class="company-data-item">
           <label for="">Notes</label>
-          <textarea name="" id="" cols="30" rows="10" placeholder="e.g. Good Tech Company"></textarea>
+          <textarea placeholder="e.g. Good Tech Company"></textarea>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            errorName: null,
+            companyName: null,
+            companySpend: null,
+            companySpendAbility: null
+        }
+    },
+    methods: {
+        checkName() {
+            if (this.companyName) {
+                this.errorName = null
+                return true
+            }
+            if (!this.companyName) {
+                this.errorName = "Company Name must be present"
+            } 
+        }
+    }
 }
 </script>
 
@@ -34,7 +53,6 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 80px;
     padding: 20px;
     width: 100%;
 }
@@ -79,5 +97,9 @@ export default {
 }
 .company-data-item textarea::placeholder {
     color: #CDD1DF;
+}
+.error {
+    color: red;
+    text-transform: capitalize;
 }
 </style>
