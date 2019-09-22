@@ -21,7 +21,9 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 * {
+  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;

@@ -1,13 +1,9 @@
-import Vue from "vue";
-import Router from "vue-router";
 import CompanyData from "./components/CompanyData.vue";
 import CompanyPage from "./components/CompanyPage.vue";
 import CompanyTable from "./components/CompanyTable.vue";
 
-Vue.use(Router);
 
-export default new Router({
-  routes: [
+export const routes = [
     {
       path: "/companydata",
       name: "companydata",
@@ -44,5 +40,4 @@ export default new Router({
             ]
         }
     }
-    ]
-});
+  ]
