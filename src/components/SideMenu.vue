@@ -1,29 +1,33 @@
 <template>
   <div class="side-menu">
-
-      <ul>
-          <li class="side-menu-item">
-              <router-link to="/companydata"> Company Data</router-link>
-          </li>
-          <li class="side-menu-item">
-              <router-link to="/companytable"> Company Table</router-link>
-          </li>
-          <li class="side-menu-item">
-              <router-link to="/companypage"> Company Page </router-link>
-          </li>
-      </ul>
+    <ul>
+        <li class="side-menu-item" @click="goToRoute('companydata')">
+            Company Data
+        </li>
+        <li class="side-menu-item" @click="goToRoute('companytable')">
+            Company Table
+        </li>
+        <li class="side-menu-item" @click="goToRoute('companypage')">
+            Company Page
+        </li>
+    </ul>
   </div>
 </template>
 
 <script>
-export default {
 
+export default {
+    methods: {
+     goToRoute(route) {
+        this.$router.push(route);
+     }   
+    }
 }
 </script>
 
 <style scoped>
     .side-menu {
-        width: 300px;
+        min-width: 300px;
         margin-right: 20px;
     }
    .side-menu-item {
