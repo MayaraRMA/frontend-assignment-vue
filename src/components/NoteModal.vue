@@ -37,7 +37,7 @@ export default {
    border: 1px solid #D8DCE5;
    background-color: #ffffff;
     border-radius: 8px;
-    padding: 20px;
+    padding: 30px;
     margin: auto;
     width: 50%;
 }
@@ -52,21 +52,21 @@ export default {
 .modal-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     color: #B8B8B8;
     text-transform: uppercase;
     font-size: 0.75rem; 
 }
-.modal .modal-header label {
-    
-}
+
 .modal-button {
     text-align: right;
 }
 .modal .modal-button button {
+    border: none;
     border-radius: 8px;
     cursor: pointer;
-    padding: 10px 20px;
+    font-size: 0.8rem;
+    padding: 8px 35px;
     background-color: #394783;
     color: #ffffff;
     margin-top: 20px;
