@@ -1,15 +1,20 @@
 <template>
-  <div class="body-company">
-      <side-menu></side-menu>
-      <router-view></router-view>
+  <div class="body-company" >
+    <bread-crumb></bread-crumb>
+    <div class="company-content">
+        <side-menu></side-menu>
+        <router-view></router-view>
+    </div>  
   </div>
 </template>
 
 <script>
+import BreadCrumb from "./BreadCrumb.vue";
 import SideMenu from "./SideMenu.vue"
 
 export default {
 components: {
+    BreadCrumb,
     SideMenu
 }
 }
@@ -20,8 +25,12 @@ components: {
     background-color: #ffffff;
     height: calc(100vh - 140px);
     width: 100%;
-    padding: 20px 8%;
-    display: flex;
+    padding: 20px 8%; 
     overflow: auto;
+}
+
+.company-content {
+    display: flex;
+    margin-top: 20px;
 }
 </style>
