@@ -3,41 +3,49 @@ import CompanyPage from "./components/CompanyPage.vue";
 import CompanyTable from "./components/CompanyTable.vue";
 
 
-export const routes = [
-    {
-      path: "/companydata",
-      name: "companydata",
-      component: CompanyData,
-      meta: {
-        title: "Company Data",
-        breadcrumb: [
-            { name: "Home" },
-            { name: "Company Data" }
-          ]
-      }
-    },
-    {
-      path: "/companytable",
-      name: "companytable",
-      component: CompanyTable,
-      meta: {
-        title: "Company Table",
-        breadcrumb: [
-            { name: "Home" },
-            { name: "Company Table" }
-          ]
-      }
-    },
-    {
-        path: "/companypage",
-        name: "companypage",
-        component: CompanyPage,
-        meta: {
-          title: "Company Page",
-          breadcrumb: [
-              { name: "Home" },
-              { name: "Company Page" }
-            ]
-        }
+const routes = [
+  {
+    path: "/"
+  },
+  {
+    path: "*",
+    name: "notFound",
+    // component: NotFound,
+    meta: { title: "404" }
+  },
+  {
+    path: "/companydata",
+    name: "companydata",
+    component: CompanyData,
+    meta: {
+      title: "Company Data",
+      breadcrumb: [
+          { name: "Company Data" }
+        ]
     }
-  ]
+  },
+  {
+    path: "/companytable",
+    name: "companytable",
+    component: CompanyTable,
+    meta: {
+      title: "Company Table",
+      breadcrumb: [
+          { name: "Company Table" }
+        ]
+    }
+  },
+  {
+      path: "/companypage",
+      name: "companypage",
+      component: CompanyPage,
+      meta: {
+        title: "Company Page",
+        breadcrumb: [
+            { name: "Company Page" }
+          ]
+      }
+  }
+]
+
+export { routes }
