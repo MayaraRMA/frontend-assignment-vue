@@ -3,23 +3,43 @@
       <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</h5>
       <div class="company-data-item">
           <label for="companyName">Company Name</label>
-          <input @blur="checkName" type="text" name="companyName" v-model="companyName" placeholder="e.g. Your Company Name">
+          <input 
+            @blur="checkName" 
+            type="text" 
+            name="companyName" 
+            v-model="companyName" 
+            placeholder="e.g. Your Company Name">
           <span class="error" v-if="errorName">{{ errorName }}</span>
       </div>
       
       <div class="company-data-item">
           <label for="">Company Spend</label>
-          <input type="text" v-model="companySpend" placeholder="e.g. $150,000">
+          <input
+            @blur="checkSpend"
+            type="text"
+            v-model.number="companySpend"
+            min="0"
+            placeholder="e.g. $150,000">
+          <span class="error" v-if="errorSpend">{{ errorSpend }}</span>
       </div>
       <div class="company-data-item">
           <label for="">Company Spend Ability</label>
-          <input type="text" v-model="companySpendAbility" placeholder="e.g. $150,000 - $330,000">
+          <input 
+            @blur="checkSpendAbility"
+            type="text" 
+            v-model="companySpendAbility" 
+            placeholder="e.g. $150,000 - $330,000">
+          <span class="error" v-if="errorSpendAbility">{{ errorSpendAbility }}</span>
       </div>
       <div class="company-data-item">
           <label for="">Notes</label>
           <textarea @click="openModal" placeholder="e.g. Good Tech Company"></textarea>
       </div>
-      <note-modal class="note-modal" v-if="showModal" @closeModal="showModal = $event"></note-modal>
+      <note-modal 
+        class="note-modal" 
+        v-if="showModal" 
+        @closeModal="showModal = $event">
+      </note-modal>
   </div>
 </template>
 
@@ -33,6 +53,8 @@ export default {
     data() {
         return {
             errorName: null,
+            errorSpend: null,
+            errorSpendAbility: null,
             companyName: null,
             companySpend: null,
             companySpendAbility: null,
@@ -42,21 +64,48 @@ export default {
     methods: {
         checkName() {
             if (this.companyName) {
-                this.errorName = null
-                return true
+                this.errorName = null;
+                return true;
             }
             if (!this.companyName) {
-                this.errorName = "Company Name must be present"
+                this.errorName = "Company Name must be present";
             } 
         },
+        checkSpend() {
+            let val = parseFloat(this.companySpend);
+            
+            if (val > 0) {
+                this.errorSpend = null;
+                this.companySpend = this.companySpend.toLocaleString('en-US', { style:'currency', currency: 'USD' })
+                return true;
+            }
+            if (val < 0) {
+                this.errorSpend = "Company Spend must be positive";
+            }
+    
+        },
+        checkSpendAbility() {
+            let findIndex = this.companySpendAbility.toString().indexOf("-");
+
+            console.log(findIndex)
+            // let valMin = this.companySpendAbility.
+        },
         openModal() {
-            this.showModal = true
+            this.showModal = true;
         }
     }
 }
 </script>
 
 <style scoped>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance:textfield;
+}
 .company-data {
     border: 1px solid #D8DCE5;
     border-radius: 8px;
@@ -111,6 +160,7 @@ export default {
 .error {
     color: red;
     text-transform: capitalize;
+    margin-top: 3px;
 }
 
 .note-modal {
@@ -122,4 +172,6 @@ export default {
     top: 0;
     background-color: rgba(0,0,0,0.5)
 }
+
+
 </style>
