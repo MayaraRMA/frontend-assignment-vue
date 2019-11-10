@@ -33,12 +33,18 @@
       </div>
       <div class="company-data-item">
           <label for="">Notes</label>
-          <textarea @click="openModal" placeholder="e.g. Good Tech Company"></textarea>
+          <textarea 
+            v-model="additionalNotes" 
+            @click="openModal" 
+            placeholder="e.g. Good Tech Company">
+          </textarea>
       </div>
       <note-modal 
         class="note-modal" 
-        v-if="showModal" 
-        @closeModal="showModal = $event">
+        v-if="showModal"
+        :additionalNotes="additionalNotes"
+        @closeModal="showModal = $event"
+        @saveModal="additionalNotes = $event">
       </note-modal>
   </div>
 </template>
@@ -58,6 +64,7 @@ export default {
             companyName: null,
             companySpend: null,
             companySpendAbility: null,
+            additionalNotes: null,
             showModal: false
         }
     },

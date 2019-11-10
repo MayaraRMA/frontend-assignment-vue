@@ -3,11 +3,11 @@
     <div class="modal">
         <div class="modal-header">
             <label for="addNotes">Additional Notes</label>
-            <p @click="closeModal">x</p>
+            <p class="close-modal" @click="closeModal">x</p>
         </div>
-        <textarea name="addNotes" cols="30" rows="10"></textarea>
+        <textarea v-model="addNotes" name="addNotes" cols="30" rows="10"></textarea>
         <div class="modal-button">
-            <button @click="closeModal">SAVE</button>
+            <button @click="saveModal">SAVE</button>
         </div>
     </div>   
 </div>
@@ -20,12 +20,24 @@ export default {
         showModal: {
             type: Boolean,
             default: false
+        },
+        additionalNotes: {
+            type: String
+        }
+    },
+    data() {
+        return {
+            addNotes: this.additionalNotes
         }
     },
     methods: {
         closeModal() {
-            this.showModal = false
-            this.$emit("closeModal", this.showModal)
+            this.showModal = false;
+            this.$emit("closeModal", this.showModal);
+        },
+        saveModal() {
+            this.$emit("saveModal", this.addNotes);
+            this.closeModal();
         }
     },
 
@@ -33,6 +45,11 @@ export default {
 </script>
 
 <style scoped>
+.close-modal {
+    padding: 5px;
+    cursor: pointer;
+}
+
 .modal {
    border: 1px solid #D8DCE5;
    background-color: #ffffff;
@@ -41,6 +58,7 @@ export default {
     margin: auto;
     width: 50%;
 }
+
 .modal textarea {
     padding: 10px;
     border: 1px solid #D8DCE5;
